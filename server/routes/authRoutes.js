@@ -4,9 +4,6 @@ const { responseMiddleware } = require('../middlewares/response.middleware');
 
 const router = Router();
 
-// console.log(connectWithDatabase.update("2136-123bf-vg123",{name:"Vasya"}));
-// console.log(connectWithDatabase.getAll());
-
 router.post('/', (req, res, next) => {
     try {
         const data = AuthService.login(req.body);

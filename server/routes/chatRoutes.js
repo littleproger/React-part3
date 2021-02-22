@@ -41,7 +41,6 @@ router.put('/:id', (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
     try {
         const id = req.params.id
-        console.log(id)
         const data = ChatService.delete(id);
         res.data = {...data};
     } catch (err) {

@@ -4,9 +4,6 @@ const { responseMiddleware } = require('../middlewares/response.middleware');
 
 const router = Router();
 
-// console.log(UserService.update("2136-123bf-vg123",{name:"Vasya"}));
-// console.log(UserService.getAll());
-
 router.get('/', (req, res, next) => {
     try {
         const data = UserService.getAll();
@@ -42,7 +39,6 @@ router.get('/:id', (req, res, next) => {
 }, responseMiddleware);
 
 router.put('/:id', (req, res, next) => {
-    console.log(req.body)
     try {
         const id = req.params.id
         const data = UserService.update(id,req.body);
