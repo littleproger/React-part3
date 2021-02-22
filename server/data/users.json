@@ -1,0 +1,29 @@
+{
+    "users": [
+        {
+            "id": "2136-123bf-vg123",
+            "name": "Vasya",
+            "surname": "Vasichkin",
+            "password": "12345",
+            "email": "Vasichkin@gmail.com"
+        },{
+            "id": "2136-231gc-8123v",
+            "name": "Petya",
+            "surname": "Petichkin",
+            "password": "3142",
+            "email": "Petichkin@gmail.com"
+        },{
+            "id": "2136-2312b-231e3",
+            "name": "Eduard",
+            "surname": "Nalivkin",
+            "password": "6348",
+            "email": "Nalivkin@gmail.com"
+        },{
+            "id": "2136-g23j2-872by",
+            "name": "Sasha",
+            "surname": "Mikulich",
+            "password": "92342",
+            "email": "Mikulich@gmail.com"
+        },
+    ]
+}
