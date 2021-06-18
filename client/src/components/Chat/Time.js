@@ -14,13 +14,13 @@ function helper(text,cls){
 export default function Time(props) {
   const today = new Date().toLocaleDateString();
   const timeMessage = new Date(props.data.createdAt).toLocaleDateString();
-  let [todayDay, todayMonth, todayYear] = new Date()
+  let [, todayMonth, todayYear] = new Date()
     .toLocaleDateString()
     .split(".");
   let [dateNmb, monthNmb, yearNmb] = new Date(props.data.createdAt)
     .toLocaleDateString()
     .split(".");
-  let [date, month, year] = new Date(props.data.createdAt)
+  let [date, month, ] = new Date(props.data.createdAt)
     .toDateString()
     .split(" ");
   if (props.prevDate !== timeMessage) {

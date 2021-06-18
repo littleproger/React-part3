@@ -15,8 +15,7 @@ function* fetchMessageSagaWorker() {
     const data = yield call(getMessages);
     yield put({ type: FETCHED_MESSAGES, payload: data });
   } catch (e) {
-    console.log(e);
-    // yield put(showAlert(e));
+    yield put(showAlert(e));
   }
 }
 

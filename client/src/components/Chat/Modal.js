@@ -10,7 +10,7 @@ class Modal extends Component {
       editedMsg: {
         id: "",
         text: "",
-        editedAt:""
+        updatedAt:""
       },
     };
   }
@@ -30,7 +30,7 @@ class Modal extends Component {
       editedMsg: {
         id: this.props.editMsg.id,
         text: text,
-        editedAt:new Date().toString()
+        updatedAt:new Date().toString()
       },
     });
   };

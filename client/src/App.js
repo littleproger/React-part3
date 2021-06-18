@@ -1,9 +1,8 @@
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
+
 import './App.css';
 import Chat from './components/Chat/Chat';
 import Auth from './components/Auth/Auth';

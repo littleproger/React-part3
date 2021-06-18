@@ -6,8 +6,9 @@ import OtherMessage from "./OtherMessage";
 function Message(props) {
   let [hour, minute] = "";
   let newMsg = true;
-  if (props.data.editedAt) {
-    [hour, minute] = new Date(props.data.editedAt)
+  console.log(new Date(props.data.updatedAt).getTime() - new Date(props.data.createdAt).getTime())
+  if (new Date(props.data.updatedAt).getTime() - new Date(props.data.createdAt).getTime() > 2000 ) {
+    [hour, minute] = new Date(props.data.updatedAt)
       .toLocaleTimeString()
       .split(":");
     newMsg = false;
@@ -19,7 +20,7 @@ function Message(props) {
 
   return (
     <div>
-      {props.data.userId === props.myId ? (
+      {String(props.data.userId) === String(props.myId) ? (
         <MyMessage
           clickToEdit={props.clickToEdit}
           deleteMessage={props.deleteMessage}

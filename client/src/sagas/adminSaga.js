@@ -10,9 +10,9 @@ import {
 import { get, post, putRequest, deleteReq } from "../helpers/requestHelper";
 
 export function* adminSagaWatcher() {
-  yield takeEvery(FETCH_USERS, fetchUsersSagaWorker);
   yield takeEvery(ADD_USER, addNewUserSagaWorker);
   yield takeEvery(EDIT_USER, editUserSagaWorker);
+  yield takeEvery(FETCH_USERS, fetchUsersSagaWorker);
   yield takeEvery(DELETE_USER, deleteUserSagaWorker);
 }
 
@@ -51,6 +51,7 @@ function* deleteUserSagaWorker({ payload }) {
     yield put(showAlert(e));
   }
 }
+
 async function getUsers() {
   return get("adminpage");
 }

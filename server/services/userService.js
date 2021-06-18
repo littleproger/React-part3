@@ -1,56 +1,36 @@
-const connectWithDatabase = require('./connectWithDatabase');
+// import * as connectWithDatabase from "./connectWithDatabase.js";
+const UsersModel = require('../data/repositories/users.js');
 
-const path = "./users.json";
+// const path = "./users.json";
 
 class UserService {
+  async getAll() {
+    return await UsersModel.getAll();
+  }
 
-    getAll(){
-        const item = connectWithDatabase.getAll(path);
-        if(!item) {
-            throw Error('Users not found');
-        }
-        return item;
-    }
+  async getOne(id) {
+    return await UsersModel.getById(id);
+  }
 
-    getOne(id){
-        const item = connectWithDatabase.getOne(id,path);
-        if(!item) {
-            throw Error('User not found');
-        }
-        return item;
-    }
+  async update(id, dataToUpdate) {
+    return await UsersModel.updateById(id, dataToUpdate);
+  }
 
-    update(id, dataToUpdate) {
-        const item = connectWithDatabase.update(id,dataToUpdate,path);
-        if(!item) {
-            throw Error('User not found!')
-        }
-        return item
-    }
+  async delete(id) {
+    return await UsersModel.deleteById(id);
+  }
 
-    delete(id) {
-        const item = connectWithDatabase.delete(id,path)
-        if(item.length===0) {
-            throw Error('User not found!')
-        }
-        return item
-    }
+  async add(user) {
+    return await UsersModel.createUser(user);
+  }
 
-    add(user) {
-        const item = connectWithDatabase.add(user,path);
-        if(!item) {
-            throw Error("User entity to create is not valid");
-        }
-        return item;
-    }
-
-    search(search) {
-        const item = connectWithDatabase.search(search,path);
-        if(!item) {
-            throw Error("User not found!")
-        }
-        return item;
-    }
+  // search(search) {
+  //   return UsersModel.search(search);
+  //   if (!item) {
+  //     throw Error("User not found!");
+  //   }
+  //   return item;
+  // }
 }
 
 module.exports = new UserService();

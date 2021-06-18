@@ -25,7 +25,7 @@ export function chatReducer(state = initialState, action) {
         user: action.payload.user,
         text: action.payload.text,
         createdAt: action.payload.createdAt,
-        editedAt: "",
+        updatedAt: "",
       };
       return { ...state, messages: [...state.messages, message] };
 
@@ -54,7 +54,7 @@ export function chatReducer(state = initialState, action) {
         };
       } else {
         const myMessage = state.messages.filter(
-          (message) => state.myInform.userId === message.userId
+          (message) => state.myInform && state.myInform.userId === message.userId
         );
         const lastMessage = myMessage[myMessage.length - 1];
         if (lastMessage) {
@@ -82,7 +82,7 @@ export function chatReducer(state = initialState, action) {
         messages: state.messages.map((message) => {
           if (message.id === action.payload.id) {
             message.text = action.payload.text;
-            message.editedAt = action.payload.editedAt;
+            message.updatedAt = action.payload.updatedAt;
           }
           return message;
         }),

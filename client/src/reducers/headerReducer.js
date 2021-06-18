@@ -11,11 +11,12 @@ export function headerReducer(state = initialState, action) {
     case CHANGE_HEADER_DATA:
       const messages = action.payload;
       const allUserId = messages.map((msg) => {
-        return msg.userId;
+        return String(msg.userId);
       });
 
       const messagesLength = messages.length;
       const users = new Set(allUserId);
+      console.log(users)
 
       const createdAt = new Date(messages[messagesLength - 1].createdAt)
         .toLocaleDateString()

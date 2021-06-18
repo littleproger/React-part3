@@ -8,7 +8,7 @@ import {
   deleteMessage,
   showEdit,
 } from "../../actions/messageActions";
-import { changeHeaderData } from "../../actions/headerActions";
+// import { changeHeaderData } from "../../actions/headerActions";
 
 import Header from "./Header";
 import MessageList from "./MessageList";
@@ -24,6 +24,7 @@ class Chat extends Component {
 
   componentDidMount() {
     this.props.fetchMessage();
+    !this.props.myInform.id && this.props.history.push("/")
   }
 
   toAdminPage = () => {

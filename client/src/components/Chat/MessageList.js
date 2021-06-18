@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { changeHeaderData } from "../../actions/headerActions";
 import React from "react";
 import Message from "./Message";
+import { v4 as uuidv4 } from 'uuid';
 import Time from './Time';
 
 function MessageList(props) {
@@ -16,7 +17,7 @@ function MessageList(props) {
       {
         props.messages.map((data) => {
           if(timeNow !== new Date(data.createdAt).toLocaleDateString()){
-            time = <Time data={data} prevDate={prevDate} cls={"date-block"} key={new Date()}/>
+            time = <Time data={data} prevDate={prevDate} cls={"date-block"} key={uuidv4()}/>
             prevDate = new Date(data.createdAt).toLocaleDateString();
           }
             return (

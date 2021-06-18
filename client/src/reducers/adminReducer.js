@@ -11,7 +11,6 @@ const initialState = {
   users: [],
   editUsr: {
     user: {
-      id: "",
       name: "",
       surname: "",
       email: "",

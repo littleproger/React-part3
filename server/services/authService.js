@@ -1,14 +1,17 @@
-const connectWithDatabase = require('./connectWithDatabase');
+// import * as connectWithDatabase from './connectWithDatabase.js';
+const User = require("../data/repositories/users.js");
 
-const path = "./users.json";
+// const path = "./users.json";
 class AuthService {
-    login(userData) {
-        const user = connectWithDatabase.search(userData,path);
-        if(!user) {
-            throw Error('User not found');
-        }
-        return user;
+  async login(userData) {
+    const user = await User.findByEmail(userData.email);
+    if (!user) {
+      throw Error("User not found");
+    } else if (user.password !== userData.password) {
+      throw Error("Password incorrect!");
     }
+    return user;
+  }
 }
 
 module.exports = new AuthService();

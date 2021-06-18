@@ -1,4 +1,4 @@
-const fs = require("fs");
+import fs from "fs";
 
 class connectWithDatabase {
   getAll(path) {
@@ -81,4 +81,4 @@ function writeFile(data,path) {
   }
 }
 
-module.exports = new connectWithDatabase();
+export {connectWithDatabase};

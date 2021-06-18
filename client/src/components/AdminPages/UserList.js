@@ -7,7 +7,7 @@ import Users from "./Users";
 function UserList(props) {
 
   useEffect(() => {
-    props.fetchUsers();
+    setTimeout(()=>{props.fetchUsers()},100)
   },[]);
 
   const showModal = () =>{

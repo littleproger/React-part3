@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
-import { addMessage, showEdit } from "../../actions/messageActions";
+import { fetchMessage, addMessage, showEdit } from "../../actions/messageActions";
 import { v4 as uuidv4 } from "uuid";
 
 class MessageInput extends Component {
@@ -25,12 +25,10 @@ class MessageInput extends Component {
   inputHandlerNew = (e) => {
     const myInform = this.props.myInform;
     const text = e.target.value.trim();
-    const id = uuidv4();
     const date = new Date();
     this.setState({
       msg: {
         text: text,
-        id: id,
         createdAt: date.toString(),
         userId: myInform.id,
         avatar: myInform.avatar,
@@ -42,6 +40,7 @@ class MessageInput extends Component {
   sendText = () => {
     if (this.state.msg.text) {
       this.props.addMessage(this.state.msg);
+      setTimeout(()=>{this.props.fetchMessage()},10)
       this.state.msg.text = "";
     }
   };
@@ -83,7 +82,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = {
   addMessage,
-  showEdit
+  showEdit,
+  fetchMessage
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageInput);

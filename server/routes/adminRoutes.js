@@ -1,65 +1,89 @@
-const { Router } = require('express');
-const UserService = require('../services/userService');
-const { responseMiddleware } = require('../middlewares/response.middleware');
+const { Router } = require("express");
+const UserService = require("../services/userService");
+const { responseMiddleware } = require("../middlewares/response.middleware");
 
 const router = Router();
 
-router.get('/', (req, res, next) => {
-    try {
-        const data = UserService.getAll();
-        res.data = {...data};
-    } catch (err) {
-        res.status(404).err = err;
-    } finally {
-        next();
-    }
-}, responseMiddleware);
+// console.log(UserService.update("2136-123bf-vg123",{name:"Vasya"}));
+// console.log(UserService.getAll());
 
-router.post('/', (req, res, next) => {
+router.get(
+  "/",
+  async (req, res, next) => {
     try {
-        const data = UserService.add(req.body);
-        res.data = {...data};
+      const data = await UserService.getAll();
+      res.data = data;
     } catch (err) {
-        res.status(400).err = err;
+      res.status(404).err = err;
     } finally {
-        next();
+      next();
     }
-}, responseMiddleware);
+  },
+  responseMiddleware
+);
 
-router.get('/:id', (req, res, next) => {
+router.post(
+  "/",
+  async (req, res, next) => {
     try {
-        const id = req.params.id
-        const data = UserService.getOne(id);
-        res.data = {...data};
+      const data = await UserService.add(req.body);
+      res.data = { ...data };
     } catch (err) {
-        res.status(404).err = err;
+      res.status(400).err = err;
     } finally {
-        next();
+      next();
     }
-}, responseMiddleware);
+  },
+  responseMiddleware
+);
 
-router.put('/:id', (req, res, next) => {
+router.get(
+  "/:id",
+  async (req, res, next) => {
     try {
-        const id = req.params.id
-        const data = UserService.update(id,req.body);
-        res.data = {...data};
+      const id = req.params.id;
+      const data = await UserService.getOne(id);
+      res.data = { ...data };
     } catch (err) {
-        res.status(404).err = err;
+      res.status(404).err = err;
     } finally {
-        next();
+      next();
     }
-}, responseMiddleware);
+  },
+  responseMiddleware
+);
 
-router.delete('/:id', (req, res, next) => {
+router.put(
+  "/:id",
+  async (req, res, next) => {
+    console.log(req.body);
     try {
-        const id = req.params.id
-        const data = UserService.delete(id);
-        res.data = {...data};
+      const id = req.params.id;
+      const data = await UserService.update(id, req.body);
+      res.data = { ...data };
     } catch (err) {
-        res.status(404).err = err;
+      res.status(404).err = err;
     } finally {
-        next();
+      next();
     }
-}, responseMiddleware);
+  },
+  responseMiddleware
+);
+
+router.delete(
+  "/:id",
+  async (req, res, next) => {
+    try {
+      const id = req.params.id;
+      const data = await UserService.delete(id);
+      res.data = { ...data };
+    } catch (err) {
+      res.status(404).err = err;
+    } finally {
+      next();
+    }
+  },
+  responseMiddleware
+);
 
 module.exports = router;

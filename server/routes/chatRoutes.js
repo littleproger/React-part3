@@ -1,53 +1,70 @@
-const { Router } = require('express');
-const ChatService =require('../services/chatService');
-const { responseMiddleware } = require('../middlewares/response.middleware');
+const { Router } = require("express");
+const ChatService = require("../services/chatService");
+const { responseMiddleware } = require("../middlewares/response.middleware");
 
 const router = Router();
 
-router.get('/', (req, res, next) => {
+router.get(
+  "/",
+  async (req, res, next) => {
     try {
-        const data = ChatService.getAll();
-        res.data = {...data};
+      const data = await ChatService.getAll();
+      res.data = { ...data };
     } catch (err) {
-        res.status(404).err = err;
+      res.status(404).err = err;
     } finally {
-        next();
+      next();
     }
-}, responseMiddleware);
+  },
+  responseMiddleware
+);
 
-router.post('/', (req, res, next) => {
+router.post(
+  "/",
+  async (req, res, next) => {
+    console.log(req.body);
     try {
-        const data = ChatService.add(req.body);
-        res.data = {...data};
+      const data = await ChatService.add(req.body);
+      res.data = { ...data };
     } catch (err) {
-        res.status(400).err = err;
+      res.status(400).err = err;
     } finally {
-        next();
+      next();
     }
-}, responseMiddleware);
+  },
+  responseMiddleware
+);
 
-router.put('/:id', (req, res, next) => {
+router.put(
+  "/:id",
+  async (req, res, next) => {
     try {
-        const id = req.params.id
-        const data = ChatService.update(id,req.body);
-        res.data = {...data};
+      const id = req.params.id;
+      const data = await ChatService.update(id, req.body);
+      res.data = { ...data };
     } catch (err) {
-        res.status(404).err = err;
+      res.status(404).err = err;
     } finally {
-        next();
+      next();
     }
-}, responseMiddleware);
+  },
+  responseMiddleware
+);
 
-router.delete('/:id', (req, res, next) => {
+router.delete(
+  "/:id",
+  async (req, res, next) => {
     try {
-        const id = req.params.id
-        const data = ChatService.delete(id);
-        res.data = {...data};
+      const id = req.params.id;
+      const data = await ChatService.delete(id);
+      res.data = { ...data };
     } catch (err) {
-        res.status(404).err = err;
+      res.status(404).err = err;
     } finally {
-        next();
+      next();
     }
-}, responseMiddleware);
+  },
+  responseMiddleware
+);
 
 module.exports = router;
